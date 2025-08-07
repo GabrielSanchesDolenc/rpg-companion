@@ -16,9 +16,10 @@ app.use('/api', routes);
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Rota fallback para SPA
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
+
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
