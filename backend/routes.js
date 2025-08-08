@@ -32,8 +32,6 @@ router.post('/login', (req, res) => {
   );
 });
 
-
-
 router.post('/ficha', (req, res) => {
   const { usuario_id, dados } = req.body;
   db.run(
@@ -74,6 +72,56 @@ router.get('/anotacao/:usuario_id', (req, res) => {
     if (err) return res.status(500).json({ error: 'Erro ao buscar anotação' });
     res.json(row || { texto: '', desenho: null });
   });
+});
+
+/* ===== FICHA HYAKKI YAGYO ===== */
+router.post('/ficha/hyakki_yagyo', (req, res) => {
+  const { usuario_id, dados } = req.body;
+  db.run(`
+    INSERT INTO fichas_hyakki_yagyo (usuario_id, dados)
+    VALUES (?, ?)
+    ON CONFLICT(usuario_id) DO UPDATE
+    SET dados = excluded.dados
+  `, [usuario_id, JSON.stringify(dados)], function (err) {
+    if (err) return res.status(500).json({ error: 'Erro ao salvar ficha Hyakki Yagyo' });
+    res.json({ success: true });
+  });
+});
+
+router.get('/ficha/hyakki_yagyo/:usuario_id', (req, res) => {
+  db.get(
+    'SELECT dados FROM fichas_hyakki_yagyo WHERE usuario_id = ?',
+    [req.params.usuario_id],
+    (err, row) => {
+      if (err) return res.status(500).json({ error: 'Erro ao buscar ficha Hyakki Yagyo' });
+      res.json({ dados: row ? JSON.parse(row.dados) : null });
+    }
+  );
+});
+
+/* ===== FICHA HYAKKI ARVORE ===== */
+router.post('/ficha/hyakki_arvore', (req, res) => {
+  const { usuario_id, dados } = req.body;
+  db.run(`
+    INSERT INTO fichas_hyakki_arvore (usuario_id, dados)
+    VALUES (?, ?)
+    ON CONFLICT(usuario_id) DO UPDATE
+    SET dados = excluded.dados
+  `, [usuario_id, JSON.stringify(dados)], function (err) {
+    if (err) return res.status(500).json({ error: 'Erro ao salvar ficha Hyakki Árvore' });
+    res.json({ success: true });
+  });
+});
+
+router.get('/ficha/hyakki_arvore/:usuario_id', (req, res) => {
+  db.get(
+    'SELECT dados FROM fichas_hyakki_arvore WHERE usuario_id = ?',
+    [req.params.usuario_id],
+    (err, row) => {
+      if (err) return res.status(500).json({ error: 'Erro ao buscar ficha Hyakki Árvore' });
+      res.json({ dados: row ? JSON.parse(row.dados) : null });
+    }
+  );
 });
 
 

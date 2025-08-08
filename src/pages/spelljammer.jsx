@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Spelljammer.css';
+import './style.css';
 
 const user = JSON.parse(localStorage.getItem('user'));
 

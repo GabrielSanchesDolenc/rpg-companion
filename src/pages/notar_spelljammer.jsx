@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './NotarSpelljammer.css';
+import './style.css';
 
 export default function NotarSpelljammer() {
   const canvasRef = useRef(null);

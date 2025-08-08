@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import LoginModal from './components/LoginModal';
 import Spelljammer from './pages/spelljammer';
 import NotarSpelljammer from './pages/notar_spelljammer';
-
+import HyakkiYagyo from './pages/hyakki_yagyo';
+import SkillTree from './pages/Hyakki_Arvore';
 
 // Componente principal da tela inicial
 function HomePage() {
@@ -53,6 +54,8 @@ function HomePage() {
         <h1>Choose Your Campaign</h1>
         <div className="campaign-grid">
           <button className="campaign-button" onClick={() => navigate('/spelljammer')}>Spelljammer</button>
+          <button className="campaign-button" onClick={() => navigate('/hyakki_yagyo')}>hyakki yagyo</button>
+          <button className="campaign-button" onClick={() => navigate('/hyakki_arvore')}>Árvore de Habilidades</button>
         </div>
       </main>
 
@@ -69,6 +72,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/spelljammer" element={<Spelljammer />} />
         <Route path="/notar_spelljammer" element={<NotarSpelljammer />} />
+        <Route path="/hyakki_yagyo" element={<HyakkiYagyo />} />
+        <Route path="/hyakki_arvore" element={<SkillTree />} />
       </Routes>
     </Router>
   );
