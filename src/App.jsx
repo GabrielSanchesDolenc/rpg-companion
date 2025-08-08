@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import LoginModal from './components/LoginModal';
 import Spelljammer from './pages/spelljammer';
 import NotarSpelljammer from './pages/notar_spelljammer';
-import HyakkiYagyo from './pages/hyakki_yagyo';
+import HyakkiYagyo from './pages/Hyakki_Yagyo';
 import SkillTree from './pages/Hyakki_Arvore';
 
 // Componente principal da tela inicial
